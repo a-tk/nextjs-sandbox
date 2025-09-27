@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "docker:build": "docker build -t nextjs-sandbox .",
+    "docker:start": "docker run -d -p 3000:3000 --name nextjs-sandbox nextjs-sandbox",
+    "mongo:start": "docker run -d -p 27017:27017 --name mongodb mongo",
+    "start:all": "npm run mongo:start && npm run docker:build && npm run docker:start"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -15,13 +19,14 @@
     "import": "^0.0.6",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.2",
-    "next": "15.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "next": "^15.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

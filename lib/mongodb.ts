@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const uri = process.env.MONGODB_URI!;
 if (!uri) throw new Error("MONGODB_URI is not defined");
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 let cached = (global as any).mongoose;
 
 if (!cached) cached = (global as any).mongoose = { conn: null, promise: null };
