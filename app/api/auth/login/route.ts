@@ -14,5 +14,14 @@ export async function POST(req: Request) {
   if (!valid) return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
 
   const token = signToken({ id: user._id });
-  return NextResponse.json({ token });
+
+  const res = NextResponse.json({ message: "Logged in" });
+  res.cookies.set({
+    name: process.env.COOKIE_NAME!,
+    value: token,
+    httpOnly: true,
+    path: "/",
+    maxAge: 60 * 60 * 24,
+  });
+  return res;
 }
